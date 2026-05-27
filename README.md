@@ -61,7 +61,8 @@ built here yet.
 - verify.py - verify an attestation, fully offline
 - src/diff.py - the temporal diff: compare two attestations of the same
   query over time and surface what changed (verifies both first)
-- diff.py - CLI to diff two attestation files
+- diff.py - CLI to diff two attestation files (text, or --html for a card)
+- src/render_html.py - render a diff report as a standalone, shareable HTML card
 - tests/ - proves the core properties and the full witness flow
 
 ## Install
@@ -115,6 +116,12 @@ appear, which disappear, whether the answer shifts. This is the closest thing to
 a "git diff" for a live query.
 
     python diff.py earlier-attestation.json later-attestation.json
+
+For a shareable visual, add --html to write a self-contained card (no external
+assets, all dynamic content escaped):
+
+    python diff.py earlier.json later.json --html diff.html
+
 
 Both attestations are verified before anything is compared. If either fails
 verification, no diff is produced. The diff compares two observations to each
